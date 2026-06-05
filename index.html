@@ -1,31 +1,120 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Website</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: #f0f8ff;
-      padding: 50px;
-    }
+    <title>Zarahs Mini Games</title>
 
-    h1 {
-      color: #0066cc;
-    }
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
 
-    button {
-      background: #0066cc;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-    }
-  </style>
+        .screen {
+            min-height: 100vh;
+            display: none;
+            padding: 40px;
+        }
+
+        #home {
+            display: block;
+            background: lightblue;
+        }
+
+        #games {
+            background: white;
+        }
+
+        #gameScreen {
+            background: black;
+            color: white;
+        }
+
+        h1 {
+            margin-top: 50px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: dodgerblue;
+            color: white;
+        }
+
+        .game-card {
+            width: 300px;
+            margin: 30px auto;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .game-image {
+            width: 100%;
+            height: 180px;
+            background: skyblue;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+        }
+
+        .game-name {
+            margin: 15px 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        #gameScreen h1 {
+            margin-top: 200px;
+            font-size: 60px;
+        }
+    </style>
 </head>
 <body>
-  <h1>Welcome to My Website!</h1>
-  <p>I built this myself.</p>
-  <button>Click Me</button>
+
+    <!-- Home Screen -->
+    <div id="home" class="screen">
+        <h1>WELCOME TO ZARAHS MINI GAMES</h1>
+        <br>
+        <button onclick="showGames()">PLAY</button>
+    </div>
+
+    <!-- Games Screen -->
+    <div id="games" class="screen">
+        <h1>Choose A Game</h1>
+
+        <div class="game-card">
+            <div class="game-image">🐦</div>
+
+            <div class="game-name">
+                Flappy Bird Inspired
+            </div>
+
+            <button onclick="startGame()">PLAY</button>
+        </div>
+    </div>
+
+    <!-- Placeholder Game Screen -->
+    <div id="gameScreen" class="screen">
+        <h1>GAME</h1>
+    </div>
+
+    <script>
+        function showGames() {
+            document.getElementById("home").style.display = "none";
+            document.getElementById("games").style.display = "block";
+        }
+
+        function startGame() {
+            document.getElementById("games").style.display = "none";
+            document.getElementById("gameScreen").style.display = "block";
+        }
+    </script>
+
 </body>
 </html>
