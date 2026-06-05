@@ -1,206 +1,170 @@
 from pathlib import Path
 
-html = """<!DOCTYPE html>
+html = """
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zarah's Mini Games</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zarah's Mini Games Deluxe v2</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#63c7ff,#dff6ff);overflow:hidden}
+*{box-sizing:border-box}body{margin:0;font-family:Arial;background:linear-gradient(#5ecbff,#dff8ff);overflow:hidden}
 .screen{display:none;height:100vh;align-items:center;justify-content:center;flex-direction:column}
 #home{display:flex}
-.card,.game-card{background:rgba(255,255,255,.92);padding:30px;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.2);text-align:center}
-.card{max-width:500px;width:90%}
-.game-card{width:340px}
-.game-icon{font-size:90px}
-button{border:none;padding:14px 28px;border-radius:14px;font-size:18px;cursor:pointer;background:#0a84ff;color:white;font-weight:bold}
-#gameScreen{display:none;position:relative;background:linear-gradient(#67d1ff,#d8f7ff)}
-canvas{border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.25);touch-action:manipulation}
-#hud{position:absolute;top:15px;left:50%;transform:translateX(-50%);display:flex;gap:20px;font-weight:bold;font-size:22px;background:rgba(255,255,255,.85);padding:10px 18px;border-radius:16px}
-#exitBtn{margin-bottom:10px}
-#gameOver{display:none;position:absolute;inset:0;background:rgba(0,0,0,.55);align-items:center;justify-content:center}
-.panel{background:white;padding:30px;border-radius:24px;text-align:center;width:320px}
+.hero,.card,.panel{background:rgba(255,255,255,.9);border-radius:24px;box-shadow:0 15px 40px rgba(0,0,0,.15)}
+.hero{padding:40px;text-align:center}.cards{display:flex;gap:20px;flex-wrap:wrap}
+.card{padding:20px;width:260px;text-align:center}
+button{border:none;border-radius:14px;padding:12px 22px;background:#0a84ff;color:#fff;font-weight:bold;cursor:pointer}
+.exit{position:absolute;top:15px;left:15px;background:#ff3b30}
+#hud{position:absolute;top:15px;left:50%;transform:translateX(-50%);background:white;padding:10px 16px;border-radius:14px;font-weight:bold}
+canvas{background:white;border-radius:24px;box-shadow:0 15px 40px rgba(0,0,0,.2)}
+#overlay{display:none;position:absolute;inset:0;background:rgba(0,0,0,.5);align-items:center;justify-content:center}
+.panel{padding:25px;width:320px;text-align:center}
 </style>
 </head>
 <body>
-
-<div id="home" class="screen">
-<div class="card">
-<h1>🐦 Zarah's Mini Games</h1>
-<p>Welcome! Play fun games.</p>
-<button onclick="showGames()">PLAY</button>
-</div>
-</div>
-
+<div id="home" class="screen"><div class="hero"><h1>🎮 Zarah's Mini Games</h1><button onclick="showGames()">PLAY</button></div></div>
 <div id="games" class="screen">
-<div class="game-card">
-<div class="game-icon">🐦</div>
-<h2>Flappy Bird</h2>
-<p>Fly through the pipes and beat your high score.</p>
-<button onclick="startGame()">PLAY GAME</button>
+<h1>Choose A Game</h1>
+<div class="cards">
+<div class="card"><h2>🐦 Flappy Bird</h2><button onclick="openGame('flappy')">PLAY</button></div>
+<div class="card"><h2>🐍 Snake</h2><button onclick="openGame('snake')">PLAY</button></div>
+<div class="card"><h2>⭕ Perfect Circle</h2><button onclick="openGame('circle')">PLAY</button></div>
+</div></div>
+<div id="play" class="screen">
+<button class="exit" onclick="exitGame()">❌ EXIT</button>
+<div id="hud">Score: <span id="score">0</span> | Best: <span id="best">0</span></div>
+<canvas id="canvas" width="420" height="700"></canvas>
+<div id="overlay"><div class="panel"><h2>Finished</h2><p id="endText"></p><p id="bestText"></p><button onclick="restart()">Play Again</button></div></div>
 </div>
-</div>
-
-<div id="gameScreen" class="screen">
-<div id="hud">
-<div>Score: <span id="score">0</span></div>
-<div>Best: <span id="best">0</span></div>
-</div>
-
-<button id="exitBtn" onclick="exitGame()">⬅ Exit To Games</button>
-<canvas id="game" width="420" height="700"></canvas>
-
-<div id="gameOver">
-<div class="panel">
-<h2>You Lost!</h2>
-<p id="finalScore"></p>
-<p id="bestScore"></p>
-<button onclick="restartGame()">Play Again</button>
-</div>
-</div>
-</div>
-
 <script>
-const home=document.getElementById("home");
-const games=document.getElementById("games");
-const gameScreen=document.getElementById("gameScreen");
-const gameOver=document.getElementById("gameOver");
-const canvas=document.getElementById("game");
-const ctx=canvas.getContext("2d");
+const home=home=document.getElementById('home'),games=document.getElementById('games'),play=document.getElementById('play');
+const canvas=document.getElementById('canvas'),ctx=canvas.getContext('2d'),overlay=document.getElementById('overlay');
+home.style.display='flex';
+let game='',running=false,score=0,best=0;
 
-let score=0;
-let best=localStorage.getItem("zarahBest")||0;
-document.getElementById("best").textContent=best;
+function showGames(){home.style.display='none';games.style.display='flex'}
+function openGame(g){game=g;games.style.display='none';play.style.display='flex';overlay.style.display='none';start()}
+function exitGame(){running=false;play.style.display='none';games.style.display='flex'}
+function restart(){overlay.style.display='none';start()}
+function hud(){scoreEl.textContent=score;bestEl.textContent=best}
+const scoreEl=document.getElementById('score'),bestEl=document.getElementById('best');
 
-let bird,pipes,clouds,gameEnded,spawnTimer;
+function finish(msg){running=false;if(score>best){best=score;localStorage.setItem('best_'+game,best)}document.getElementById('endText').textContent=msg;document.getElementById('bestText').textContent='Personal Best: '+best;overlay.style.display='flex'}
 
-function showGames(){home.style.display="none";games.style.display="flex";}
+let bird,pipes,snake,food,dir,snakeStarted=false,points=[];
 
-function resetGame(){
-score=0;
-document.getElementById("score").textContent=score;
-bird={x:90,y:250,r:18,vel:0};
+function start(){
+score=0;best=parseInt(localStorage.getItem('best_'+game)||0);hud();
+ctx.clearRect(0,0,420,700);
+if(game==='flappy'){
+bird={x:80,y:250,v:0};
 pipes=[];
-clouds=[{x:100,y:80,s:1},{x:280,y:130,s:1.2},{x:420,y:60,s:0.9}];
-gameEnded=false;
-spawnTimer=0;
+for(let i=0;i<3;i++) addPipe(500+i*220);
+running=true;requestAnimationFrame(flappyLoop);
+}
+if(game==='snake'){
+snake=[{x:10,y:10},{x:9,y:10},{x:8,y:10}];
+food=randomFood();dir='right';snakeStarted=false;running=true;drawSnake();
+}
+if(game==='circle'){
+running=true;points=[];
+ctx.fillStyle="#222";ctx.font="26px Arial";
+ctx.fillText("Draw one full circle",85,120);
+ctx.fillText("Release to score",120,160);
+}
 }
 
-function startGame(){
-games.style.display="none";
-gameScreen.style.display="flex";
-gameOver.style.display="none";
-resetGame();
-requestAnimationFrame(loop);
-}
-
-function restartGame(){
-gameOver.style.display="none";
-resetGame();
-requestAnimationFrame(loop);
-}
-
-function exitGame(){
-gameEnded=true;
-pipes=[];
-score=0;
-document.getElementById("score").textContent="0";
-gameScreen.style.display="none";
-gameOver.style.display="none";
-games.style.display="flex";
-}
-
-function flap(){if(!gameEnded) bird.vel=-7.5;}
-
-document.addEventListener("keydown",e=>{if(e.code==="Space") flap();});
-canvas.addEventListener("click",flap);
-canvas.addEventListener("touchstart",e=>{e.preventDefault();flap();});
-
-function createPipe(){
+function addPipe(x){
 const gap=190;
-const top=Math.random()*250+80;
-pipes.push({x:canvas.width+50,w:80,top:top,bottom:top+gap,counted:false});
+const top=80+Math.random()*260;
+pipes.push({x:x,top:top,bottom:top+gap,done:false});
 }
 
-function update(){
-bird.vel+=0.35;
-bird.y+=bird.vel;
-spawnTimer++;
-if(spawnTimer>100){createPipe();spawnTimer=0;}
-const speed=3+(score*0.05);
-
-for(let pipe of pipes){
-pipe.x-=speed;
-if(bird.x+bird.r>pipe.x&&bird.x-bird.r<pipe.x+pipe.w&&(bird.y-bird.r<pipe.top||bird.y+bird.r>pipe.bottom)){endGame();}
-if(!pipe.counted&&pipe.x+pipe.w<bird.x){pipe.counted=true;score++;document.getElementById("score").textContent=score;}
+function flappyLoop(){
+if(!running||game!=='flappy')return;
+bird.v+=0.35;bird.y+=bird.v;
+if(pipes[pipes.length-1].x<250) addPipe(500);
+ctx.fillStyle='#7ed6ff';ctx.fillRect(0,0,420,700);
+for(let p of pipes){
+p.x-=3+score*0.05;
+ctx.fillStyle='#2ecc71';
+ctx.fillRect(p.x,0,75,p.top);
+ctx.fillRect(p.x,p.bottom,75,700-p.bottom);
+ctx.fillStyle='#27ae60';
+ctx.fillRect(p.x-5,p.top-18,85,18);
+ctx.fillRect(p.x-5,p.bottom,85,18);
+if(!p.done&&p.x+75<bird.x){p.done=true;score++;hud()}
+if(bird.x+18>p.x&&bird.x-18<p.x+75&&(bird.y-18<p.top||bird.y+18>p.bottom)) finish('Score: '+score);
+}
+pipes=pipes.filter(p=>p.x>-100);
+ctx.beginPath();ctx.fillStyle='yellow';ctx.arc(bird.x,bird.y,18,0,Math.PI*2);ctx.fill();
+if(bird.y<0||bird.y>700) finish('Score: '+score);
+requestAnimationFrame(flappyLoop);
 }
 
-pipes=pipes.filter(p=>p.x+p.w>0);
-if(bird.y<0||bird.y>canvas.height){endGame();}
+document.addEventListener('keydown',e=>{
+if(game==='flappy'&&running&&e.code==='Space') bird.v=-7;
+if(game==='snake'){
+if(e.key.startsWith('Arrow')) snakeStarted=true;
+if(e.key==='ArrowUp'&&dir!=='down')dir='up';
+if(e.key==='ArrowDown'&&dir!=='up')dir='down';
+if(e.key==='ArrowLeft'&&dir!=='right')dir='left';
+if(e.key==='ArrowRight'&&dir!=='left')dir='right';
+}
+});
+canvas.addEventListener('click',()=>{if(game==='flappy'&&running)bird.v=-7});
 
-for(let c of clouds){c.x-=0.5;if(c.x<-100)c.x=canvas.width+100;}
+function randomFood(){return{x:Math.floor(Math.random()*20)+1,y:Math.floor(Math.random()*33)+1}}
+
+function drawSnake(){
+ctx.fillStyle='#111827';ctx.fillRect(0,0,420,700);
+ctx.beginPath();ctx.fillStyle='#ff3b30';ctx.arc(food.x*20,food.y*20,8,0,Math.PI*2);ctx.fill();
+snake.forEach((s,i)=>{
+ctx.fillStyle=i===0?'#7CFF8A':'#22c55e';
+ctx.fillRect(s.x*20-9,s.y*20-9,18,18);
+});
+if(running&&game==='snake') setTimeout(snakeTick,90);
 }
 
-function drawCloud(c){
-ctx.fillStyle="rgba(255,255,255,.9)";
-ctx.beginPath();
-ctx.arc(c.x,c.y,20*c.s,0,Math.PI*2);
-ctx.arc(c.x+20*c.s,c.y-5,25*c.s,0,Math.PI*2);
-ctx.arc(c.x+45*c.s,c.y,20*c.s,0,Math.PI*2);
-ctx.fill();
+function snakeTick(){
+if(!running||game!=='snake')return;
+if(!snakeStarted){drawSnake();return;}
+let h={...snake[0]};
+if(dir==='up')h.y--; if(dir==='down')h.y++; if(dir==='left')h.x--; if(dir==='right')h.x++;
+if(h.x<1||h.y<1||h.x>20||h.y>33||snake.some(s=>s.x===h.x&&s.y===h.y)){finish('Score: '+score);return;}
+snake.unshift(h);
+if(h.x===food.x&&h.y===food.y){score++;hud();food=randomFood();}
+else snake.pop();
+drawSnake();
 }
 
-function draw(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-for(let c of clouds) drawCloud(c);
-ctx.fillStyle="#9be15d";
-ctx.fillRect(0,canvas.height-80,canvas.width,80);
-
-for(let pipe of pipes){
-ctx.fillStyle="#2ecc71";
-ctx.fillRect(pipe.x,0,pipe.w,pipe.top);
-ctx.fillRect(pipe.x,pipe.bottom,pipe.w,canvas.height);
-ctx.fillStyle="#27ae60";
-ctx.fillRect(pipe.x-6,pipe.top-20,pipe.w+12,20);
-ctx.fillRect(pipe.x-6,pipe.bottom,pipe.w+12,20);
-}
-
-ctx.save();
-ctx.translate(bird.x,bird.y);
-ctx.rotate(Math.max(-0.5,Math.min(1,bird.vel*0.05)));
-ctx.fillStyle="#ffd93d";
-ctx.beginPath();ctx.arc(0,0,bird.r,0,Math.PI*2);ctx.fill();
-ctx.fillStyle="white";
-ctx.beginPath();ctx.arc(7,-5,6,0,Math.PI*2);ctx.fill();
-ctx.fillStyle="black";
-ctx.beginPath();ctx.arc(9,-5,2,0,Math.PI*2);ctx.fill();
-ctx.fillStyle="orange";
-ctx.beginPath();ctx.moveTo(18,0);ctx.lineTo(30,-4);ctx.lineTo(18,4);ctx.fill();
-ctx.restore();
-}
-
-function endGame(){
-if(gameEnded) return;
-gameEnded=true;
-if(score>best){best=score;localStorage.setItem("zarahBest",best);}
-document.getElementById("best").textContent=best;
-document.getElementById("finalScore").textContent="Score: "+score;
-document.getElementById("bestScore").textContent="Personal Best: "+best;
-gameOver.style.display="flex";
-}
-
-function loop(){
-if(gameEnded){draw();return;}
-update();
-draw();
-requestAnimationFrame(loop);
-}
+let drawing=false;
+canvas.addEventListener('mousedown',e=>{
+if(game!=='circle'||!running)return;
+drawing=true;points=[];ctx.clearRect(0,0,420,700);ctx.beginPath();ctx.moveTo(e.offsetX,e.offsetY);points.push([e.offsetX,e.offsetY]);
+});
+canvas.addEventListener('mousemove',e=>{
+if(!drawing)return;
+ctx.lineWidth=4;ctx.lineTo(e.offsetX,e.offsetY);ctx.stroke();
+points.push([e.offsetX,e.offsetY]);
+});
+window.addEventListener('mouseup',()=>{
+if(game!=='circle'||!drawing)return;
+drawing=false;
+if(points.length<30){finish('Draw a bigger circle!');return;}
+let cx=points.reduce((a,p)=>a+p[0],0)/points.length;
+let cy=points.reduce((a,p)=>a+p[1],0)/points.length;
+let ds=points.map(p=>Math.hypot(p[0]-cx,p[1]-cy));
+let avg=ds.reduce((a,b)=>a+b,0)/ds.length;
+let dev=ds.reduce((a,b)=>a+Math.abs(b-avg),0)/ds.length;
+score=Math.max(1,Math.min(100,Math.round(100-dev*0.8)));
+hud();
+finish('Circle Accuracy: '+score+'%');
+});
 </script>
-</body>
-</html>
+</body></html>
 """
-path="/mnt/data/Zarah_Flappy_Pro_Menu_Exit.html"
-Path(path).write_text(html, encoding="utf-8")
+path="/mnt/data/Zarah_Mini_Games_Deluxe_v2.html"
+Path(path).write_text(html,encoding="utf-8")
 print(path)
