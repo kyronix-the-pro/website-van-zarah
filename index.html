@@ -1,17 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
->
-
-<title>
-Yousuf's Mini Games Ultimate v5
-</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Yousuf's Mini Games Deluxe Ultimate v4</title>
 
 <style>
 
@@ -19,602 +11,233 @@ Yousuf's Mini Games Ultimate v5
 margin:0;
 padding:0;
 box-sizing:border-box;
--webkit-tap-highlight-color:transparent;
 }
 
-:root{
-
---blue:#0a84ff;
---dark:#111827;
---green:#22c55e;
---red:#ef4444;
---yellow:#facc15;
---panel:rgba(255,255,255,.95);
-
-}
-
-html,
 body{
-
-width:100%;
-height:100%;
+font-family:Arial,sans-serif;
 overflow:hidden;
-font-family:
-Arial,
-Helvetica,
-sans-serif;
-
-background:
-linear-gradient(
-180deg,
-#63cfff,
-#e7faff
-);
-
+background:linear-gradient(180deg,#63cfff,#e7faff);
 }
 
 .screen{
-
 display:none;
-
-width:100vw;
 height:100vh;
-
-position:relative;
-
+width:100vw;
 align-items:center;
 justify-content:center;
 flex-direction:column;
-
+position:relative;
 }
 
 #home{
 display:flex;
 }
 
-
-
-
-
-
-
-/* ==========================
-   BACKGROUND
-========================== */
-
 .cloud{
-
 position:absolute;
-
 background:white;
-
 border-radius:999px;
-
 opacity:.85;
-
 }
 
 .cloud:before,
 .cloud:after{
-
 content:"";
-
 position:absolute;
-
 background:white;
-
 border-radius:999px;
-
 }
 
 .cloud1{
-
-width:150px;
-height:50px;
-
+width:120px;
+height:40px;
 top:90px;
-left:-300px;
-
-animation:
-cloudMove
-45s
-linear
-infinite;
-
+left:-200px;
+animation:cloudMove 40s linear infinite;
 }
 
 .cloud1:before{
-
-width:80px;
-height:80px;
-
-top:-30px;
+width:60px;
+height:60px;
 left:15px;
-
+top:-25px;
 }
 
 .cloud1:after{
-
-width:90px;
-height:90px;
-
-top:-40px;
+width:70px;
+height:70px;
 right:10px;
-
+top:-30px;
 }
 
 .cloud2{
-
-width:220px;
-height:70px;
-
-top:250px;
-left:-400px;
-
-animation:
-cloudMove
-70s
-linear
-infinite;
-
+width:170px;
+height:55px;
+top:220px;
+left:-350px;
+animation:cloudMove 60s linear infinite;
 }
 
 .cloud2:before{
-
-width:100px;
-height:100px;
-
-top:-35px;
-left:20px;
-
+width:70px;
+height:70px;
+left:15px;
+top:-25px;
 }
 
 .cloud2:after{
-
-width:120px;
-height:120px;
-
-top:-50px;
-right:20px;
-
+width:90px;
+height:90px;
+right:15px;
+top:-40px;
 }
 
 @keyframes cloudMove{
-
 from{
-transform:
-translateX(0);
+transform:translateX(0);
 }
-
 to{
-transform:
-translateX(
-calc(100vw + 700px)
-);
+transform:translateX(calc(100vw + 500px));
 }
-
 }
-
-
-
-
-
-
-
-/* ==========================
-   HERO
-========================== */
 
 .hero{
-
-background:
-rgba(
-255,
-255,
-255,
-.95
-);
-
-padding:50px;
-
-border-radius:35px;
-
+background:rgba(255,255,255,.94);
+padding:45px;
+border-radius:30px;
 text-align:center;
-
-box-shadow:
-0 25px 60px
-rgba(
-0,
-0,
-0,
-.15
-);
-
-backdrop-filter:
-blur(10px);
-
+box-shadow:0 20px 50px rgba(0,0,0,.15);
+backdrop-filter:blur(8px);
 z-index:5;
-
 }
 
 .hero h1{
-
-font-size:56px;
-
+font-size:52px;
 margin-bottom:15px;
-
 }
 
 .hero p{
-
-font-size:22px;
-
+font-size:20px;
 margin-bottom:20px;
-
-color:#555;
-
-}
-
-
-
-
-
-
-
-/* ==========================
-   BUTTONS
-========================== */
-
-button{
-
-border:none;
-
-outline:none;
-
-cursor:pointer;
-
-padding:
-14px
-28px;
-
-border-radius:16px;
-
-font-size:18px;
-
-font-weight:bold;
-
-background:
-var(--blue);
-
-color:white;
-
-transition:.18s;
-
-}
-
-button:hover{
-
-transform:
-scale(1.05);
-
-}
-
-button:active{
-
-transform:
-scale(.98);
-
-}
-
-.exit{
-
-position:absolute;
-
-top:15px;
-left:15px;
-
-background:
-var(--red);
-
-z-index:20;
-
-}
-
-.smallExit{
-
-background:
-var(--red);
-
-}
-
-.musicBtn{
-
-position:absolute;
-
-top:15px;
-right:15px;
-
-background:
-#8b5cf6;
-
-z-index:20;
-
-}
-
-
-
-
-
-
-
-/* ==========================
-   GAME MENU
-========================== */
-
-#games{
-
-padding:20px;
-
-overflow-y:auto;
-
 }
 
 .cards{
-
 display:flex;
-
 flex-wrap:wrap;
-
 justify-content:center;
-
 gap:24px;
-
-max-width:1400px;
-
+padding:20px;
+max-width:1200px;
 }
 
 .card{
-
 width:240px;
-
 background:white;
-
+border-radius:24px;
 padding:20px;
-
-border-radius:28px;
-
 text-align:center;
-
-box-shadow:
-0 15px 40px
-rgba(
-0,
-0,
-0,
-.12
-);
-
+box-shadow:0 15px 40px rgba(0,0,0,.12);
 transition:.25s;
-
 }
 
 .card:hover{
-
-transform:
-translateY(-10px);
-
+transform:translateY(-8px) scale(1.03);
 }
 
 .cardIcon{
-
-font-size:68px;
-
+font-size:64px;
 margin-bottom:10px;
-
 }
 
 .card h2{
-
 margin-bottom:15px;
-
-}
-
-.card p{
-
-font-size:14px;
-
-color:#666;
-
-margin-bottom:15px;
-
-}
-
-
-
-
-
-
-
-/* ==========================
-   GAME AREA
-========================== */
-
-#play{
-
-background:
-linear-gradient(
-180deg,
-#63cfff,
-#e7faff
-);
-
-}
-
-#hud{
-
-position:absolute;
-
-top:15px;
-
-left:50%;
-
-transform:
-translateX(-50%);
-
-background:white;
-
-padding:
-12px
-18px;
-
-border-radius:16px;
-
-font-weight:bold;
-
-box-shadow:
-0 12px 30px
-rgba(
-0,
-0,
-0,
-.15
-);
-
-z-index:10;
-
-}
-
-canvas{
-
-border-radius:24px;
-
-box-shadow:
-0 20px 50px
-rgba(
-0,
-0,
-0,
-.22
-);
-
-background:
-linear-gradient(
-#87d8ff,
-#e4f9ff
-);
-
-max-width:
-95vw;
-
-max-height:
-85vh;
-
-}
-
-
-
-
-
-
-
-/* ==========================
-   OVERLAY
-========================== */
-
-#overlay{
-
-display:none;
-
-position:absolute;
-
-inset:0;
-
-background:
-rgba(
-0,
-0,
-0,
-.6
-);
-
-align-items:center;
-justify-content:center;
-
-z-index:100;
-
-}
-
-.panel{
-
-width:360px;
-
-background:white;
-
-padding:30px;
-
-border-radius:28px;
-
-text-align:center;
-
-box-shadow:
-0 25px 60px
-rgba(
-0,
-0,
-0,
-.25
-);
-
-}
-
-.rank{
-
-font-size:42px;
-
-margin-top:10px;
-
-}
-
-.overlayButtons{
-
-display:flex;
-
-justify-content:center;
-
-gap:10px;
-
-margin-top:20px;
-
-}
-
-
-
-
-
-
-
-/* ==========================
-   MOBILE
-========================== */
-
-@media(max-width:800px){
-
-.hero h1{
-font-size:40px;
-}
-
-.cards{
-gap:16px;
-}
-
-.card{
-width:170px;
 }
 
 button{
-font-size:15px;
+border:none;
+padding:12px 24px;
+border-radius:14px;
+cursor:pointer;
+font-size:16px;
+font-weight:bold;
+background:#0a84ff;
+color:white;
+transition:.2s;
 }
 
+button:hover{
+transform:scale(1.05);
+}
+
+.exit{
+position:absolute;
+top:15px;
+left:15px;
+background:#ff3b30;
+z-index:20;
+}
+
+.smallExit{
+background:#ff3b30;
+}
+
+#hud{
+position:absolute;
+top:15px;
+left:50%;
+transform:translateX(-50%);
+background:white;
+padding:10px 18px;
+border-radius:14px;
+font-weight:bold;
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+z-index:10;
+}
+
+canvas{
+border-radius:24px;
+box-shadow:0 20px 50px rgba(0,0,0,.2);
+background:linear-gradient(#87d8ff,#e4f9ff);
+}
+
+#overlay{
+display:none;
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.55);
+align-items:center;
+justify-content:center;
+z-index:100;
+}
+
+.panel{
+background:white;
+padding:30px;
+border-radius:24px;
+width:350px;
+text-align:center;
+box-shadow:0 20px 60px rgba(0,0,0,.25);
+}
+
+.panel h2{
+margin-bottom:15px;
+}
+
+.panel p{
+margin-top:10px;
+}
+
+.overlayButtons{
+display:flex;
+justify-content:center;
+gap:10px;
+margin-top:18px;
+}
+
+.rank{
+font-size:40px;
+font-weight:bold;
+margin-top:10px;
 }
 
 </style>
@@ -622,286 +245,112 @@ font-size:15px;
 
 <body>
 
-<div
-class="cloud cloud1"
-></div>
+<div id="home" class="screen">
 
-<div
-class="cloud cloud2"
-></div>
-
-<div
-id="home"
-class="screen"
->
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
 
 <div class="hero">
+<h1>🎮 Zarah's Mini Games</h1>
+<p>Ultimate Collection v4</p>
 
-<h1>
-🎮 Yousuf's Mini Games
-</h1>
-
-<p>
-Ultimate Collection v5
-</p>
-
-<button
-onclick="showGames()"
->
+<button onclick="showGames()">
 PLAY
 </button>
 
 </div>
 
 </div>
-<div
-id="games"
-class="screen"
->
 
-<h1
-style="
-margin-bottom:25px;
-font-size:42px;
-"
->
+<div id="games" class="screen">
+
+<h1 style="margin-bottom:25px;">
 Choose A Game
 </h1>
 
 <div class="cards">
 
 <div class="card">
-
-<div class="cardIcon">
-🐦
-</div>
-
-<h2>
-Flappy Bird
-</h2>
-
-<p>
-Harder, smoother and endless.
-</p>
-
-<button
-onclick="openGame('flappy')"
->
+<div class="cardIcon">🐦</div>
+<h2>Flappy Bird</h2>
+<button onclick="openGame('flappy')">
 PLAY
 </button>
-
 </div>
 
 <div class="card">
-
-<div class="cardIcon">
-🐍
-</div>
-
-<h2>
-Snake
-</h2>
-
-<p>
-Grow longer and survive.
-</p>
-
-<button
-onclick="openGame('snake')"
->
+<div class="cardIcon">🐍</div>
+<h2>Snake</h2>
+<button onclick="openGame('snake')">
 PLAY
 </button>
-
 </div>
 
 <div class="card">
-
-<div class="cardIcon">
-⭕
-</div>
-
-<h2>
-Perfect Circle
-</h2>
-
-<p>
-Draw the perfect circle.
-</p>
-
-<button
-onclick="openGame('circle')"
->
+<div class="cardIcon">⭕</div>
+<h2>Perfect Circle</h2>
+<button onclick="openGame('circle')">
 PLAY
 </button>
-
 </div>
 
 <div class="card">
-
-<div class="cardIcon">
-🧱
-</div>
-
-<h2>
-Tetris
-</h2>
-
-<p>
-Real tetrominoes and line clears.
-</p>
-
-<button
-onclick="openGame('tetris')"
->
+<div class="cardIcon">🧱</div>
+<h2>Tetris</h2>
+<button onclick="openGame('tetris')">
 PLAY
 </button>
-
 </div>
 
 <div class="card">
-
-<div class="cardIcon">
-💥
-</div>
-
-<h2>
-Block Blast
-</h2>
-
-<p>
-Place blocks and make combos.
-</p>
-
-<button
-onclick="openGame('blockblast')"
->
+<div class="cardIcon">💥</div>
+<h2>Block Blast</h2>
+<button onclick="openGame('blockblast')">
 PLAY
 </button>
-
-</div>
-
-<div class="card">
-
-<div class="cardIcon">
-⚔️
-</div>
-
-<h2>
-Pixel Quest
-</h2>
-
-<p>
-Adventure, enemies, loot and bosses.
-</p>
-
-<button
-onclick="openGame('quest')"
->
-PLAY
-</button>
-
 </div>
 
 </div>
 
 </div>
 
+<div id="play" class="screen">
 
-
-
-
-
-
-<div
-id="play"
-class="screen"
->
-
-<button
-class="exit"
-onclick="exitGame()"
->
+<button class="exit" onclick="exitGame()">
 ❌ EXIT
 </button>
 
-<button
-class="musicBtn"
-onclick="toggleMusic()"
->
-🎵 MUSIC
-</button>
-
 <div id="hud">
-
 Score:
-<span id="score">
-0
-</span>
-
-&nbsp;&nbsp;|
-
-&nbsp;&nbsp;
-
+<span id="score">0</span>
+|
 Best:
-<span id="best">
-0
-</span>
-
+<span id="best">0</span>
 </div>
 
-<canvas
-id="canvas"
-width="420"
-height="700"
-></canvas>
+<canvas id="canvas" width="420" height="700"></canvas>
 
 <div id="overlay">
 
 <div class="panel">
 
-<h2>
+<h2 id="overlayTitle">
 Game Over
 </h2>
 
-<div
-id="rank"
-class="rank"
->
-🏆
-</div>
+<p id="msg"></p>
 
-<p
-id="msg"
-style="
-margin-top:15px;
-"
->
-Score: 0
-</p>
+<p id="pb"></p>
 
-<p
-id="pb"
-style="
-margin-top:10px;
-"
->
-Personal Best: 0
-</p>
+<div id="rank" class="rank"></div>
 
-<div
-class="overlayButtons"
->
+<div class="overlayButtons">
 
-<button
-onclick="restart()"
->
+<button onclick="restart()">
 Play Again
 </button>
 
-<button
-class="smallExit"
-onclick="exitGame()"
->
+<button class="smallExit" onclick="exitGame()">
 Exit
 </button>
 
@@ -913,223 +362,58 @@ Exit
 
 </div>
 
-
-
-
-
-
-
 <script>
 
 const home =
-document.getElementById(
-"home"
-);
+document.getElementById("home");
 
 const games =
-document.getElementById(
-"games"
-);
+document.getElementById("games");
 
 const play =
-document.getElementById(
-"play"
-);
+document.getElementById("play");
 
 const canvas =
-document.getElementById(
-"canvas"
-);
+document.getElementById("canvas");
 
 const ctx =
-canvas.getContext(
-"2d"
-);
+canvas.getContext("2d");
 
 const overlay =
-document.getElementById(
-"overlay"
-);
+document.getElementById("overlay");
 
 const scoreEl =
-document.getElementById(
-"score"
-);
+document.getElementById("score");
 
 const bestEl =
-document.getElementById(
-"best"
-);
+document.getElementById("best");
 
+const rankEl =
+document.getElementById("rank");
 
+let game = "";
+let running = false;
 
+let score = 0;
+let best = 0;
 
-
-
-
-/* ==========================
-   AUDIO
-========================== */
-
-const audioCtx =
-new (
-window.AudioContext ||
-window.webkitAudioContext
-)();
-
-let musicEnabled =
-true;
-
-function beep(
-freq,
-time
-){
-
-const osc =
-audioCtx.createOscillator();
-
-const gain =
-audioCtx.createGain();
-
-osc.connect(
-gain
-);
-
-gain.connect(
-audioCtx.destination
-);
-
-osc.frequency.value =
-freq;
-
-gain.gain.value =
-0.03;
-
-osc.start();
-
-osc.stop(
-audioCtx.currentTime +
-time
-);
-
-}
-
-function clickSound(){
-
-if(
-!musicEnabled
-)return;
-
-beep(
-700,
-0.05
-);
-
-}
-
-function scoreSound(){
-
-if(
-!musicEnabled
-)return;
-
-beep(
-950,
-0.08
-);
-
-}
-
-function gameOverSound(){
-
-if(
-!musicEnabled
-)return;
-
-beep(
-200,
-0.25
-);
-
-}
-
-function toggleMusic(){
-
-musicEnabled =
-!musicEnabled;
-
-}
-
-
-
-
-
-
-
-/* ==========================
-   GLOBALS
-========================== */
-
-let game =
-"";
-
-let running =
-false;
-
-let score =
-0;
-
-let best =
-0;
-
-let animationId =
-null;
-
-home.style.display =
-"flex";
-
-
-
-
-
-
-
-function updateHUD(){
-
-scoreEl.textContent =
-score;
-
-bestEl.textContent =
-best;
-
-}
+home.style.display = "flex";
 
 function showGames(){
 
-clickSound();
-
-home.style.display =
-"none";
-
-games.style.display =
-"flex";
+home.style.display = "none";
+games.style.display = "flex";
 
 }
 
 function openGame(g){
 
-clickSound();
-
 game = g;
 
-games.style.display =
-"none";
+games.style.display = "none";
+play.style.display = "flex";
 
-play.style.display =
-"flex";
-
-overlay.style.display =
-"none";
+overlay.style.display = "none";
 
 startGame();
 
@@ -1139,44 +423,34 @@ function exitGame(){
 
 running = false;
 
-cancelAnimationFrame(
-animationId
-);
+overlay.style.display = "none";
 
-overlay.style.display =
-"none";
+play.style.display = "none";
 
-play.style.display =
-"none";
-
-games.style.display =
-"flex";
+games.style.display = "flex";
 
 }
 
 function restart(){
 
-clickSound();
-
-overlay.style.display =
-"none";
+overlay.style.display = "none";
 
 startGame();
 
 }
-/* ==========================
-   GAME OVER
-========================== */
+
+function updateHUD(){
+
+scoreEl.textContent = score;
+bestEl.textContent = best;
+
+}
 
 function finish(text){
 
 running = false;
 
-gameOverSound();
-
-if(
-score > best
-){
+if(score > best){
 
 best = score;
 
@@ -1187,49 +461,55 @@ best
 
 }
 
-updateHUD();
+bestEl.textContent = best;
 
-document.getElementById(
-"msg"
-).textContent =
-text;
+document.getElementById("msg")
+.textContent = text;
 
-document.getElementById(
-"pb"
-).textContent =
-"Personal Best: " +
-best;
+document.getElementById("pb")
+.textContent =
+"Personal Best: " + best;rankEl.textContent = "";
 
-let rank = "🥉";
+if(game === "circle"){
 
-if(score >= 25)
-rank = "🥈";
-
-if(score >= 50)
-rank = "🥇";
-
-if(score >= 100)
-rank = "👑";
-
-document.getElementById(
-"rank"
-).textContent =
-rank;
-
-overlay.style.display =
-"flex";
+if(score >= 95){
+rankEl.textContent = "🏆 S";
+}
+else if(score >= 85){
+rankEl.textContent = "🥇 A";
+}
+else if(score >= 70){
+rankEl.textContent = "🥈 B";
+}
+else{
+rankEl.textContent = "🥉 C";
+}
 
 }
 
+overlay.style.display = "flex";
 
+}
 
+let bird;
+let pipes;
+let clouds;
 
+let snake;
+let food;
+let dir;
+let snakeStarted;
 
+let drawing;
+let points;
 
+let tetrisBoard;
+let currentPiece;
+let tetrisTimer;
 
-/* ==========================
-   GAME STARTER
-========================== */
+let blastBoard;
+let blastPieces;
+let selectedPiece;
 
 function startGame(){
 
@@ -1251,31 +531,41 @@ canvas.width,
 canvas.height
 );
 
-if(game==="flappy"){
+rankEl.textContent = "";
+
+if(game === "flappy"){
+
 startFlappy();
+
 }
 
-if(game==="snake"){
+if(game === "snake"){
+
 startSnake();
+
 }
 
-if(game==="circle"){
+if(game === "circle"){
+
 startCircle();
+
 }
 
-if(game==="tetris"){
+if(game === "tetris"){
+
 startTetris();
+
 }
 
-if(game==="blockblast"){
+if(game === "blockblast"){
+
 startBlockBlast();
-}
 
-if(game==="quest"){
-startQuest();
 }
 
 }
+
+
 
 
 
@@ -1287,86 +577,54 @@ startQuest();
    FLAPPY BIRD
 ========================== */
 
-let bird;
-let pipes;
-let clouds;
-let flappyFrame;
-
 function startFlappy(){
 
-running = true;
-
-flappyFrame = 0;
-
 bird = {
-
 x:90,
-y:250,
-
-vel:0,
-
+y:260,
 r:18,
-
-rotation:0
-
+v:0
 };
 
 pipes = [];
 
 clouds = [
-
-{
-x:120,
-y:90,
-s:1
-},
-
-{
-x:320,
-y:160,
-s:1.2
-},
-
-{
-x:500,
-y:110,
-s:.8
-}
-
+{x:40,y:80},
+{x:260,y:140},
+{x:500,y:60}
 ];
 
 for(
-let i=0;
-i<4;
+let i = 0;
+i < 4;
 i++
 ){
 
-addPipe(
-550 +
-(i*250)
+createPipe(
+500 + i * 220
 );
 
 }
 
-flappyLoop();
+running = true;
+
+requestAnimationFrame(
+flappyLoop
+);
 
 }
 
-function addPipe(x){
+function createPipe(x){
 
-const gap = Math.max(
-120,
-190 -
-(score*2)
+let gap =
+Math.max(
+125,
+180 - score
 );
 
-const top =
-
+let top =
 80 +
-
-Math.random()
-*
-260;
+Math.random() * 260;
 
 pipes.push({
 
@@ -1377,100 +635,9 @@ top:top,
 bottom:
 top + gap,
 
-passed:false
+counted:false
 
 });
-
-}
-
-function flap(){
-
-if(
-!running ||
-game!=="flappy"
-){
-return;
-}
-
-bird.vel = -8.5;
-
-clickSound();
-
-}
-
-document.addEventListener(
-"keydown",
-e=>{
-
-if(
-game==="flappy" &&
-e.code==="Space"
-){
-
-flap();
-
-}
-
-}
-);
-
-canvas.addEventListener(
-"click",
-()=>{
-
-if(
-game==="flappy"
-){
-
-flap();
-
-}
-
-}
-);
-
-
-
-
-
-
-
-function drawCloud(
-x,
-y,
-scale
-){
-
-ctx.fillStyle =
-"rgba(255,255,255,.9)";
-
-ctx.beginPath();
-
-ctx.arc(
-x,
-y,
-20*scale,
-0,
-Math.PI*2
-);
-
-ctx.arc(
-x+20*scale,
-y-10,
-25*scale,
-0,
-Math.PI*2
-);
-
-ctx.arc(
-x+50*scale,
-y,
-20*scale,
-0,
-Math.PI*2
-);
-
-ctx.fill();
 
 }
 
@@ -1484,18 +651,24 @@ bird.y
 );
 
 ctx.rotate(
-bird.rotation
+Math.max(
+-0.4,
+Math.min(
+0.8,
+bird.v * 0.05
+)
+)
 );
 
 ctx.fillStyle =
-"#FFD93D";
+"#ffd93d";
 
 ctx.beginPath();
 
 ctx.arc(
 0,
 0,
-bird.r,
+18,
 0,
 Math.PI*2
 );
@@ -1503,7 +676,7 @@ Math.PI*2
 ctx.fill();
 
 ctx.fillStyle =
-"#fff";
+"white";
 
 ctx.beginPath();
 
@@ -1518,7 +691,7 @@ Math.PI*2
 ctx.fill();
 
 ctx.fillStyle =
-"#000";
+"black";
 
 ctx.beginPath();
 
@@ -1554,102 +727,24 @@ ctx.lineTo(
 
 ctx.fill();
 
-ctx.fillStyle =
-"#fbbf24";
-
-ctx.beginPath();
-
-ctx.moveTo(
--10,
-0
-);
-
-ctx.lineTo(
--22,
--6
-);
-
-ctx.lineTo(
--20,
-8
-);
-
-ctx.fill();
-
 ctx.restore();
 
 }
-
-function drawPipes(){
-
-for(
-let pipe of pipes
-){
-
-ctx.fillStyle =
-"#22c55e";
-
-ctx.fillRect(
-pipe.x,
-0,
-75,
-pipe.top
-);
-
-ctx.fillRect(
-pipe.x,
-pipe.bottom,
-75,
-700-pipe.bottom
-);
-
-ctx.fillStyle =
-"#16a34a";
-
-ctx.fillRect(
-pipe.x-5,
-pipe.top-18,
-85,
-18
-);
-
-ctx.fillRect(
-pipe.x-5,
-pipe.bottom,
-85,
-18
-);
-
-}
-
-}
-
-
-
-
-
-
 
 function flappyLoop(){
 
 if(
 !running ||
-game!=="flappy"
+game !== "flappy"
 ){
 return;
 }
 
-flappyFrame++;
-
-ctx.clearRect(
-0,
-0,
-420,
-700
-);
+bird.v += 0.38;
+bird.y += bird.v;
 
 ctx.fillStyle =
-"#7ed6ff";
+"#7fd8ff";
 
 ctx.fillRect(
 0,
@@ -1658,43 +753,48 @@ ctx.fillRect(
 700
 );
 
-for(
-let cloud of clouds
-){
+clouds.forEach(c=>{
 
-cloud.x -= .5;
+c.x -= 0.5;
 
-if(
-cloud.x < -120
-){
+if(c.x < -100){
 
-cloud.x = 520;
+c.x = 520;
 
 }
 
-drawCloud(
-cloud.x,
-cloud.y,
-cloud.s
+ctx.fillStyle =
+"rgba(255,255,255,.9)";
+
+ctx.beginPath();
+
+ctx.arc(
+c.x,
+c.y,
+25,
+0,
+Math.PI*2
 );
 
-}
-bird.vel += 0.42;
-
-bird.y += bird.vel;
-
-bird.rotation =
-Math.max(
--0.6,
-Math.min(
-1.2,
-bird.vel * 0.08
-)
+ctx.arc(
+c.x+25,
+c.y-8,
+30,
+0,
+Math.PI*2
 );
 
-const speed =
-3.5 +
-(score * 0.08);
+ctx.arc(
+c.x+55,
+c.y,
+25,
+0,
+Math.PI*2
+);
+
+ctx.fill();
+
+});
 
 if(
 pipes[
@@ -1702,29 +802,60 @@ pipes.length-1
 ].x < 250
 ){
 
-addPipe(
-550
-);
+createPipe(500);
 
 }
 
 for(
-let pipe of pipes
+let p of pipes
 ){
 
-pipe.x -= speed;
+p.x -=
+3.5 +
+score * 0.08;
+
+ctx.fillStyle =
+"#2ecc71";
+
+ctx.fillRect(
+p.x,
+0,
+75,
+p.top
+);
+
+ctx.fillRect(
+p.x,
+p.bottom,
+75,
+700
+);
+
+ctx.fillStyle =
+"#27ae60";
+
+ctx.fillRect(
+p.x-5,
+p.top-18,
+85,
+18
+);
+
+ctx.fillRect(
+p.x-5,
+p.bottom,
+85,
+18
+);
 
 if(
-!pipe.passed &&
-pipe.x + 75 <
-bird.x
+!p.counted &&
+p.x+75 < bird.x
 ){
 
-pipe.passed = true;
+p.counted = true;
 
 score++;
-
-scoreSound();
 
 updateHUD();
 
@@ -1732,30 +863,21 @@ updateHUD();
 
 if(
 
-bird.x + bird.r >
-pipe.x &&
+bird.x+18 > p.x &&
 
-bird.x - bird.r <
-pipe.x + 75 &&
+bird.x-18 < p.x+75 &&
 
 (
+bird.y-18 < p.top ||
 
-bird.y - bird.r <
-pipe.top ||
-
-bird.y + bird.r >
-pipe.bottom
-
+bird.y+18 > p.bottom
 )
 
 ){
 
 finish(
-"Score: " +
-score
+"Score: " + score
 );
-
-return;
 
 }
 
@@ -1763,13 +885,13 @@ return;
 
 pipes =
 pipes.filter(
-p=>p.x>-120
+p=>p.x>-100
 );
 
-drawPipes();
+drawBird();
 
 ctx.fillStyle =
-"#7ddc65";
+"#6bd15f";
 
 ctx.fillRect(
 0,
@@ -1778,46 +900,57 @@ ctx.fillRect(
 50
 );
 
-ctx.fillStyle =
-"#5fb74d";
-
-for(
-let i=0;
-i<420;
-i+=40
-){
-
-ctx.fillRect(
-i,
-650,
-20,
-12
-);
-
-}
-
-drawBird();
-
 if(
-bird.y < -20 ||
+bird.y < 0 ||
 bird.y > 700
 ){
 
 finish(
-"Score: " +
-score
+"Score: " + score
 );
-
-return;
 
 }
 
-animationId =
 requestAnimationFrame(
 flappyLoop
 );
 
 }
+
+document.addEventListener(
+"keydown",
+e=>{
+
+if(
+game === "flappy" &&
+running &&
+e.code === "Space"
+){
+
+bird.v = -8;
+
+}
+
+}
+);
+
+canvas.addEventListener(
+"click",
+()=>{
+
+if(
+game === "flappy" &&
+running
+){
+
+bird.v = -8;
+
+}
+
+}
+);
+
+
 
 
 
@@ -1826,30 +959,12 @@ flappyLoop
 
 
 /* ==========================
-   SNAKE V5
+   SNAKE
 ========================== */
 
-let snake;
-let snakeFood;
-let snakeDir;
-let snakeStarted;
-let snakeSpeed;
-let snakeTouchStartX;
-let snakeTouchStartY;
+function randomFood(){
 
-function startSnake(){
-
-running = true;
-
-snake = [
-
-{x:10,y:10},
-{x:9,y:10},
-{x:8,y:10}
-
-];
-
-snakeFood = {
+return{
 
 x:
 Math.floor(
@@ -1863,20 +978,37 @@ Math.random()*30
 
 };
 
-snakeDir =
-"right";
+}
 
-snakeStarted =
-false;
+function startSnake(){
 
-snakeSpeed =
-120;
+snake = [
+
+{x:10,y:10},
+{x:9,y:10},
+{x:8,y:10}
+
+];
+
+food =
+randomFood();
+
+dir = "right";
+
+snakeStarted = false;
+
+running = true;
 
 drawSnake();
 
-}
+}function drawSnake(){
 
-function drawSnake(){
+if(
+!running ||
+game !== "snake"
+){
+return;
+}
 
 ctx.fillStyle =
 "#0f172a";
@@ -1888,96 +1020,95 @@ ctx.fillRect(
 700
 );
 
-for(
-let y=0;
-y<35;
-y++
-){
-
-for(
-let x=0;
-x<21;
-x++
-){
-
-ctx.strokeStyle =
-"rgba(255,255,255,.03)";
-
-ctx.strokeRect(
-x*20,
-y*20,
-20,
-20
+let glow =
+ctx.createRadialGradient(
+food.x*20,
+food.y*20,
+2,
+food.x*20,
+food.y*20,
+18
 );
 
-}
+glow.addColorStop(
+0,
+"#ff8888"
+);
 
-}
+glow.addColorStop(
+1,
+"#ff0000"
+);
 
-ctx.fillStyle =
-"#ff3b30";
+ctx.fillStyle = glow;
 
 ctx.beginPath();
 
 ctx.arc(
-snakeFood.x*20,
-snakeFood.y*20,
-8,
+food.x*20,
+food.y*20,
+12,
 0,
 Math.PI*2
 );
 
 ctx.fill();
 
-snake.forEach(
-(seg,index)=>{
+snake.forEach((s,i)=>{
 
 ctx.fillStyle =
-index===0
+i===0
 ?
 "#86efac"
 :
 "#22c55e";
 
 ctx.fillRect(
-seg.x*20-9,
-seg.y*20-9,
+s.x*20-9,
+s.y*20-9,
 18,
 18
 );
 
-}
-);
+if(i===0){
 
 ctx.fillStyle =
-"white";
+"black";
 
-ctx.font =
-"18px Arial";
+ctx.beginPath();
 
-if(
-!snakeStarted
-){
-
-ctx.fillText(
-"Move to start",
-140,
-60
+ctx.arc(
+s.x*20-4,
+s.y*20-3,
+2,
+0,
+Math.PI*2
 );
+
+ctx.arc(
+s.x*20+4,
+s.y*20-3,
+2,
+0,
+Math.PI*2
+);
+
+ctx.fill();
 
 }
 
-if(
-running &&
-game==="snake"
-){
+});
+
+let speed =
+Math.max(
+45,
+90 - score
+);
 
 setTimeout(
 snakeTick,
-snakeSpeed
+speed
 );
-
-}
 
 }
 
@@ -1985,7 +1116,7 @@ function snakeTick(){
 
 if(
 !running ||
-game!=="snake"
+game !== "snake"
 ){
 return;
 }
@@ -1995,48 +1126,44 @@ if(
 ){
 
 drawSnake();
-
 return;
 
 }
 
-let head = {
-
+let h = {
 ...snake[0]
-
 };
 
-if(
-snakeDir==="up"
-) head.y--;
+if(dir==="up"){
+h.y--;
+}
+
+if(dir==="down"){
+h.y++;
+}
+
+if(dir==="left"){
+h.x--;
+}
+
+if(dir==="right"){
+h.x++;
+}
 
 if(
-snakeDir==="down"
-) head.y++;
 
-if(
-snakeDir==="left"
-) head.x--;
+h.x < 1 ||
 
-if(
-snakeDir==="right"
-) head.x++;
+h.y < 1 ||
 
-if(
+h.x > 20 ||
 
-head.x < 1 ||
-
-head.y < 1 ||
-
-head.x > 20 ||
-
-head.y > 33
+h.y > 33
 
 ){
 
 finish(
-"Snake Score: " +
-score
+"Score: " + score
 );
 
 return;
@@ -2044,17 +1171,18 @@ return;
 }
 
 for(
-let part of snake
+let i=0;
+i<snake.length;
+i++
 ){
 
 if(
-part.x===head.x &&
-part.y===head.y
+snake[i].x===h.x &&
+snake[i].y===h.y
 ){
 
 finish(
-"Snake Score: " +
-score
+"Score: " + score
 );
 
 return;
@@ -2063,47 +1191,22 @@ return;
 
 }
 
-snake.unshift(
-head
-);
+snake.unshift(h);
 
 if(
-
-head.x ===
-snakeFood.x &&
-
-head.y ===
-snakeFood.y
-
+h.x===food.x &&
+h.y===food.y
 ){
 
 score++;
 
-scoreSound();
-
 updateHUD();
 
-snakeSpeed =
-Math.max(
-55,
-snakeSpeed-2
-);
+food =
+randomFood();
 
-snakeFood = {
-
-x:
-Math.floor(
-Math.random()*18
-)+1,
-
-y:
-Math.floor(
-Math.random()*30
-)+1
-
-};
-
-}else{
+}
+else{
 
 snake.pop();
 
@@ -2112,160 +1215,56 @@ snake.pop();
 drawSnake();
 
 }
-/* ==========================
-   SNAKE CONTROLS
-========================== */
 
 document.addEventListener(
 "keydown",
 e=>{
 
 if(
-game!=="snake"
+game !== "snake"
 ){
 return;
 }
 
 if(
-e.key.includes(
+e.key.startsWith(
 "Arrow"
 )
 ){
-
-snakeStarted =
-true;
-
+snakeStarted = true;
 }
 
 if(
 e.key==="ArrowUp" &&
-snakeDir!=="down"
+dir!=="down"
 ){
-
-snakeDir="up";
-
+dir="up";
 }
 
 if(
 e.key==="ArrowDown" &&
-snakeDir!=="up"
+dir!=="up"
 ){
-
-snakeDir="down";
-
+dir="down";
 }
 
 if(
 e.key==="ArrowLeft" &&
-snakeDir!=="right"
+dir!=="right"
 ){
-
-snakeDir="left";
-
+dir="left";
 }
 
 if(
 e.key==="ArrowRight" &&
-snakeDir!=="left"
+dir!=="left"
 ){
-
-snakeDir="right";
-
+dir="right";
 }
 
 });
 
-canvas.addEventListener(
-"touchstart",
-e=>{
 
-snakeTouchStartX =
-e.touches[0].clientX;
-
-snakeTouchStartY =
-e.touches[0].clientY;
-
-});
-
-canvas.addEventListener(
-"touchend",
-e=>{
-
-if(
-game!=="snake"
-){
-return;
-}
-
-const endX =
-e.changedTouches[0]
-.clientX;
-
-const endY =
-e.changedTouches[0]
-.clientY;
-
-const dx =
-endX -
-snakeTouchStartX;
-
-const dy =
-endY -
-snakeTouchStartY;
-
-snakeStarted =
-true;
-
-if(
-Math.abs(dx) >
-Math.abs(dy)
-){
-
-if(
-dx > 0 &&
-snakeDir!=="left"
-){
-
-snakeDir =
-"right";
-
-}
-
-if(
-dx < 0 &&
-snakeDir!=="right"
-){
-
-snakeDir =
-"left";
-
-}
-
-}else{
-
-if(
-dy > 0 &&
-snakeDir!=="up"
-){
-
-snakeDir =
-"down";
-
-}
-
-if(
-dy < 0 &&
-snakeDir!=="down"
-){
-
-snakeDir =
-"up";
-
-}
-
-}
-
-});
 
 
 
@@ -2274,60 +1273,33 @@ snakeDir =
 
 
 /* ==========================
-   PERFECT CIRCLE V5
+   PERFECT CIRCLE
 ========================== */
-
-let drawing =
-false;
-
-let points =
-[];
 
 function startCircle(){
 
-running =
-true;
+running = true;
+
+drawing = false;
 
 points = [];
 
-ctx.clearRect(
-0,
-0,
-420,
-700
-);
-
 ctx.fillStyle =
-"#111827";
+"#222";
 
 ctx.font =
-"32px Arial";
+"28px Arial";
 
 ctx.fillText(
 "Draw A Circle",
-95,
+110,
 140
 );
 
-ctx.font =
-"24px Arial";
-
 ctx.fillText(
 "Release To Score",
-95,
+80,
 190
-);
-
-ctx.fillStyle =
-"#555";
-
-ctx.font =
-"18px Arial";
-
-ctx.fillText(
-"Try to draw a perfect circle",
-55,
-250
 );
 
 }
@@ -2343,11 +1315,9 @@ game!=="circle" ||
 return;
 }
 
-drawing =
-true;
+drawing = true;
 
-points =
-[];
+points = [];
 
 ctx.clearRect(
 0,
@@ -2380,14 +1350,13 @@ if(
 return;
 }
 
-ctx.strokeStyle =
-"#0a84ff";
-
-ctx.lineWidth =
-5;
+ctx.lineWidth = 5;
 
 ctx.lineCap =
 "round";
+
+ctx.strokeStyle =
+"#0a84ff";
 
 ctx.lineTo(
 e.offsetX,
@@ -2414,14 +1383,7 @@ game!=="circle" ||
 return;
 }
 
-finishCircle();
-
-});
-
-function finishCircle(){
-
-drawing =
-false;
+drawing = false;
 
 if(
 points.length < 30
@@ -2458,19 +1420,19 @@ p[1]-cy
 )
 );
 
-let average =
+let avg =
 distances.reduce(
 (a,b)=>a+b,
 0
 )
 /distances.length;
 
-let deviation =
+let dev =
 distances.reduce(
 (a,b)=>
 a+
 Math.abs(
-b-average
+b-avg
 ),
 0
 )
@@ -2482,8 +1444,7 @@ Math.max(
 Math.min(
 100,
 Math.round(
-100 -
-(deviation*0.85)
+100 - dev*0.8
 )
 )
 );
@@ -2493,178 +1454,97 @@ updateHUD();
 ctx.strokeStyle =
 "rgba(0,255,0,.35)";
 
-ctx.lineWidth =
-3;
+ctx.lineWidth = 3;
 
 ctx.beginPath();
 
 ctx.arc(
 cx,
 cy,
-average,
+avg,
 0,
 Math.PI*2
 );
 
 ctx.stroke();
 
-if(
-score > 95
-){
-
 finish(
-"Perfect! " +
-score +
+"Circle Accuracy: "
++
+score
++
 "%"
 );
 
-}else if(
-score > 80
-){
+});
 
-finish(
-"Excellent! " +
-score +
-"%"
-);
 
-}else if(
-score > 60
-){
 
-finish(
-"Good! " +
-score +
-"%"
-);
 
-}else{
 
-finish(
-"Circle Accuracy: " +
-score +
-"%"
-);
 
-}
 
-}
+
+
 /* ==========================
-   TETRIS V5
+   TETRIS
 ========================== */
 
-let tetrisBoard;
-let currentPiece;
-let nextPiece;
-let tetrisSpeed;
+const SHAPES = [
 
-const TETROMINOES = [
+[[1,1,1,1]],
 
-{
-color:"#38bdf8",
-shape:[
-[1,1,1,1]
-]
-},
-
-{
-color:"#facc15",
-shape:[
+[
 [1,1],
 [1,1]
-]
-},
+],
 
-{
-color:"#a855f7",
-shape:[
+[
 [0,1,0],
 [1,1,1]
-]
-},
+],
 
-{
-color:"#22c55e",
-shape:[
-[0,1,1],
-[1,1,0]
-]
-},
-
-{
-color:"#ef4444",
-shape:[
-[1,1,0],
-[0,1,1]
-]
-},
-
-{
-color:"#f97316",
-shape:[
+[
 [1,0,0],
 [1,1,1]
-]
-},
+],
 
-{
-color:"#2563eb",
-shape:[
+[
 [0,0,1],
 [1,1,1]
 ]
-]
-};
 
-function randomPiece(){
-
-const piece =
-JSON.parse(
-JSON.stringify(
-TETROMINOES[
-Math.floor(
-Math.random() *
-TETROMINOES.length
-)
-]
-)
-);
-
-piece.x = 3;
-piece.y = 0;
-
-return piece;
-
-}
+];
 
 function startTetris(){
 
 running = true;
 
-score = 0;
-
-updateHUD();
-
 tetrisBoard =
 Array.from(
 {length:20},
-() => Array(10).fill(0)
+()=>
+Array(10).fill(0)
 );
 
-currentPiece =
-randomPiece();
+currentPiece = {
 
-nextPiece =
-randomPiece();
+shape:
+SHAPES[
+Math.floor(
+Math.random()*
+SHAPES.length
+)
+],
 
-tetrisSpeed =
-500;
+x:3,
+y:0
+
+};
 
 tetrisLoop();
 
-}
-
-function drawTetrisBoard(){
+}function drawBoard(){
 
 ctx.fillStyle =
 "#111827";
@@ -2688,17 +1568,16 @@ x<10;
 x++
 ){
 
-const cell =
-tetrisBoard[y][x];
-
-if(cell){
+if(
+tetrisBoard[y][x]
+){
 
 ctx.fillStyle =
-cell;
+"#60a5fa";
 
 ctx.fillRect(
-60+x*30,
-50+y*30,
+60 + x*30,
+50 + y*30,
 28,
 28
 );
@@ -2709,8 +1588,8 @@ ctx.strokeStyle =
 "#334155";
 
 ctx.strokeRect(
-60+x*30,
-50+y*30,
+60 + x*30,
+50 + y*30,
 30,
 30
 );
@@ -2719,62 +1598,12 @@ ctx.strokeRect(
 
 }
 
-ctx.fillStyle =
-"white";
-
-ctx.font =
-"18px Arial";
-
-ctx.fillText(
-"Next",
-330,
-80
-);
-
-drawPreviewPiece();
-
 }
 
-function drawPreviewPiece(){
-
-for(
-let y=0;
-y<nextPiece.shape.length;
-y++
-){
-
-for(
-let x=0;
-x<nextPiece.shape[y].length;
-x++
-){
-
-if(
-nextPiece.shape[y][x]
-){
+function drawPiece(){
 
 ctx.fillStyle =
-nextPiece.color;
-
-ctx.fillRect(
-320 + x*25,
-100 + y*25,
-22,
-22
-);
-
-}
-
-}
-
-}
-
-}
-
-function drawCurrentPiece(){
-
-ctx.fillStyle =
-currentPiece.color;
+"#38bdf8";
 
 for(
 let y=0;
@@ -2809,7 +1638,7 @@ ctx.fillRect(
 
 }
 
-function pieceCollides(){
+function pieceCollision(){
 
 for(
 let y=0;
@@ -2829,23 +1658,23 @@ if(
 continue;
 }
 
-const boardX =
-currentPiece.x+x;
+let bx =
+currentPiece.x + x;
 
-const boardY =
-currentPiece.y+y;
+let by =
+currentPiece.y + y;
 
 if(
-boardX < 0 ||
-boardX >= 10 ||
-boardY >= 20
+bx < 0 ||
+bx >= 10 ||
+by >= 20
 ){
 return true;
 }
 
 if(
-boardY >= 0 &&
-tetrisBoard[boardY][boardX]
+by >= 0 &&
+tetrisBoard[by][bx]
 ){
 return true;
 }
@@ -2857,6 +1686,7 @@ return true;
 return false;
 
 }
+
 function lockPiece(){
 
 for(
@@ -2875,22 +1705,17 @@ if(
 currentPiece.shape[y][x]
 ){
 
-const boardX =
+let bx =
 currentPiece.x+x;
 
-const boardY =
+let by =
 currentPiece.y+y;
 
 if(
-boardY >= 0
+by>=0
 ){
 
-tetrisBoard[
-boardY
-][
-boardX
-] =
-currentPiece.color;
+tetrisBoard[by][bx]=1;
 
 }
 
@@ -2902,18 +1727,27 @@ currentPiece.color;
 
 clearLines();
 
-currentPiece =
-nextPiece;
+currentPiece = {
 
-nextPiece =
-randomPiece();
+shape:
+SHAPES[
+Math.floor(
+Math.random()*
+SHAPES.length
+)
+],
+
+x:3,
+y:0
+
+};
 
 if(
-pieceCollides()
+pieceCollision()
 ){
 
 finish(
-"Tetris Score: " +
+"Lines Cleared: " +
 score
 );
 
@@ -2923,15 +1757,13 @@ score
 
 function clearLines(){
 
-let lines = 0;
-
 for(
 let y=19;
 y>=0;
 y--
 ){
 
-let full = true;
+let full=true;
 
 for(
 let x=0;
@@ -2943,7 +1775,8 @@ if(
 !tetrisBoard[y][x]
 ){
 
-full = false;
+full=false;
+
 break;
 
 }
@@ -2961,7 +1794,9 @@ tetrisBoard.unshift(
 Array(10).fill(0)
 );
 
-lines++;
+score++;
+
+updateHUD();
 
 y++;
 
@@ -2969,34 +1804,17 @@ y++;
 
 }
 
-if(lines>0){
-
-score +=
-lines * 10;
-
-scoreSound();
-
-updateHUD();
-
-tetrisSpeed =
-Math.max(
-100,
-tetrisSpeed - 10
-);
-
 }
 
-}
+function rotatePiece(){
 
-function rotateCurrentPiece(){
-
-const original =
+let old =
 currentPiece.shape;
 
-const rotated =
-original[0].map(
+let rotated =
+old[0].map(
 (_,i)=>
-original.map(
+old.map(
 row=>row[i]
 ).reverse()
 );
@@ -3005,29 +1823,13 @@ currentPiece.shape =
 rotated;
 
 if(
-pieceCollides()
+pieceCollision()
 ){
 
 currentPiece.shape =
-original;
+old;
 
 }
-
-}
-
-function hardDrop(){
-
-while(
-!pieceCollides()
-){
-
-currentPiece.y++;
-
-}
-
-currentPiece.y--;
-
-lockPiece();
 
 }
 
@@ -3049,7 +1851,7 @@ e.key==="ArrowLeft"
 currentPiece.x--;
 
 if(
-pieceCollides()
+pieceCollision()
 ){
 currentPiece.x++;
 }
@@ -3063,27 +1865,9 @@ e.key==="ArrowRight"
 currentPiece.x++;
 
 if(
-pieceCollides()
+pieceCollision()
 ){
 currentPiece.x--;
-}
-
-}
-
-if(
-e.key==="ArrowDown"
-){
-
-currentPiece.y++;
-
-if(
-pieceCollides()
-){
-
-currentPiece.y--;
-
-lockPiece();
-
 }
 
 }
@@ -3092,15 +1876,15 @@ if(
 e.key==="ArrowUp"
 ){
 
-rotateCurrentPiece();
+rotatePiece();
 
 }
 
 if(
-e.code==="Space"
+e.key==="ArrowDown"
 ){
 
-hardDrop();
+currentPiece.y++;
 
 }
 
@@ -3115,14 +1899,14 @@ game!=="tetris"
 return;
 }
 
-drawTetrisBoard();
+drawBoard();
 
-drawCurrentPiece();
+drawPiece();
 
 currentPiece.y++;
 
 if(
-pieceCollides()
+pieceCollision()
 ){
 
 currentPiece.y--;
@@ -3133,7 +1917,10 @@ lockPiece();
 
 setTimeout(
 tetrisLoop,
-tetrisSpeed
+Math.max(
+120,
+450-(score*10)
+)
 );
 
 }
@@ -3144,13 +1931,11 @@ tetrisSpeed
 
 
 
-/* ==========================
-   BLOCK BLAST V5
-========================== */
 
-let blastBoard;
-let blastPieces;
-let selectedPiece;
+
+/* ==========================
+   BLOCK BLAST
+========================== */
 
 function startBlockBlast(){
 
@@ -3159,16 +1944,14 @@ running = true;
 blastBoard =
 Array.from(
 {length:8},
-() =>
+()=>
 Array(8).fill(0)
 );
 
 blastPieces = [
-
 makeBlastPiece(),
 makeBlastPiece(),
 makeBlastPiece()
-
 ];
 
 selectedPiece =
@@ -3201,17 +1984,6 @@ const shapes = [
 [1],
 [1],
 [1]
-],
-
-[
-[1,1,1],
-[0,1,0]
-],
-
-[
-[1,0],
-[1,0],
-[1,1]
 ]
 
 ];
@@ -3228,7 +2000,7 @@ shapes.length
 function drawBlockBlast(){
 
 ctx.fillStyle =
-"#0f172a";
+"#111827";
 
 ctx.fillRect(
 0,
@@ -3252,7 +2024,7 @@ x++
 ctx.fillStyle =
 blastBoard[y][x]
 ?
-"#38bdf8"
+"#60a5fa"
 :
 "#1e293b";
 
@@ -3265,26 +2037,13 @@ ctx.fillRect(
 
 }
 
-}
-
-ctx.fillStyle =
-"white";
-
-ctx.font =
-"20px Arial";
-
-ctx.fillText(
-"Select A Piece",
-120,
-450
-);
-for(
+}for(
 let i=0;
 i<blastPieces.length;
 i++
 ){
 
-const piece =
+let piece =
 blastPieces[i];
 
 if(!piece){
@@ -3310,7 +2069,7 @@ piece[py][px]
 ctx.fillStyle =
 selectedPiece===i
 ?
-"#facc15"
+"#fbbf24"
 :
 "#34d399";
 
@@ -3329,47 +2088,30 @@ ctx.fillRect(
 
 }
 
+ctx.fillStyle =
+"white";
+
+ctx.font =
+"20px Arial";
+
+ctx.fillText(
+"Select a piece below",
+105,
+470
+);
+
 }
 
 canvas.addEventListener(
 "mousedown",
-handleBlastClick
+blockBlastClick
 );
 
-canvas.addEventListener(
-"touchstart",
-e=>{
+function blockBlastClick(e){
 
 if(
-game!=="blockblast"
-){
-return;
-}
-
-const rect =
-canvas.getBoundingClientRect();
-
-handleBlastClick({
-
-offsetX:
-e.touches[0].clientX
--
-rect.left,
-
-offsetY:
-e.touches[0].clientY
--
-rect.top
-
-});
-
-});
-
-function handleBlastClick(e){
-
-if(
-!running ||
-game!=="blockblast"
+game!=="blockblast" ||
+!running
 ){
 return;
 }
@@ -3391,8 +2133,7 @@ my > 490+i*70 &&
 my < 560+i*70
 ){
 
-selectedPiece =
-i;
+selectedPiece = i;
 
 drawBlockBlast();
 
@@ -3408,36 +2149,29 @@ selectedPiece===null
 return;
 }
 
-const gx =
+let gx =
 Math.floor(
 (mx-50)/40
 );
 
-const gy =
+let gy =
 Math.floor(
 (my-80)/40
 );
 
-placeBlastPiece(
+placePiece(
 gx,
 gy
 );
 
 }
 
-function placeBlastPiece(
-gx,
-gy
-){
+function placePiece(x,y){
 
-const piece =
-blastPieces[
-selectedPiece
-];
+let piece =
+blastPieces[selectedPiece];
 
-if(
-!piece
-){
+if(!piece){
 return;
 }
 
@@ -3457,11 +2191,11 @@ if(
 piece[py][px]
 ){
 
-const bx =
-gx+px;
+let bx =
+x+px;
 
-const by =
-gy+py;
+let by =
+y+py;
 
 if(
 bx<0 ||
@@ -3505,9 +2239,9 @@ piece[py][px]
 ){
 
 blastBoard[
-gy+py
+y+py
 ][
-gx+px
+x+px
 ] = 1;
 
 }
@@ -3524,8 +2258,6 @@ selectedPiece =
 null;
 
 score++;
-
-scoreSound();
 
 updateHUD();
 
@@ -3555,15 +2287,13 @@ checkBlastGameOver();
 
 function clearBlastLines(){
 
-let combo = 0;
-
 for(
 let y=0;
 y<8;
 y++
 ){
 
-let full = true;
+let full=true;
 
 for(
 let x=0;
@@ -3594,7 +2324,7 @@ blastBoard[y][x]=0;
 
 }
 
-combo++;
+score += 5;
 
 }
 
@@ -3606,7 +2336,7 @@ x<8;
 x++
 ){
 
-let full = true;
+let full=true;
 
 for(
 let y=0;
@@ -3637,30 +2367,17 @@ blastBoard[y][x]=0;
 
 }
 
-combo++;
+score += 5;
 
 }
 
 }
-
-if(
-combo>0
-){
-
-score +=
-combo * 5;
-
-scoreSound();
 
 updateHUD();
 
 }
 
-}
-
-function canPlacePiece(
-piece
-){
+function canPlaceAnywhere(piece){
 
 for(
 let y=0;
@@ -3674,8 +2391,7 @@ x<8;
 x++
 ){
 
-let valid =
-true;
+let valid=true;
 
 for(
 let py=0;
@@ -3693,11 +2409,8 @@ if(
 piece[py][px]
 ){
 
-const bx =
-x+px;
-
-const by =
-y+py;
+let bx=x+px;
+let by=y+py;
 
 if(
 bx>=8 ||
@@ -3705,8 +2418,7 @@ by>=8 ||
 blastBoard[by][bx]
 ){
 
-valid =
-false;
+valid=false;
 
 }
 
@@ -3730,30 +2442,25 @@ return false;
 
 function checkBlastGameOver(){
 
-let moveFound =
-false;
+let possible=false;
 
 for(
-const piece
-of blastPieces
+let p of blastPieces
 ){
 
 if(
-piece &&
-canPlacePiece(
-piece
-)
+p &&
+canPlaceAnywhere(p)
 ){
 
-moveFound =
-true;
+possible=true;
 
 }
 
 }
 
 if(
-!moveFound
+!possible
 ){
 
 finish(
@@ -3764,1304 +2471,53 @@ score
 
 }
 
-}
-
-
-
-
-
-
-
-/* ==========================
-   PIXEL QUEST
-========================== */
-
-let player;
-let enemies;
-let coins;
-let bullets;
-let level;
-
-function startQuest(){
-
-running = true;
-
-score = 0;
-
-level = 1;
-
-player = {
-
-x:210,
-y:350,
-
-hp:100,
-
-coins:0,
-
-dir:"right"
-
-};
-
-enemies = [];
-
-coins = [];
-
-bullets = [];
-
-spawnQuestLevel();
-
-questLoop();
-
-}
-
-function spawnQuestLevel(){
-
-enemies = [];
-coins = [];
-
-for(
-let i=0;
-i<5+level;
-i++
-){
-
-enemies.push({
-
-x:
-50+
-Math.random()*320,
-
-y:
-50+
-Math.random()*500,
-
-hp:
-2+level
-
-});
-
-}
-
-for(
-let i=0;
-i<10;
-i++
-){
-
-coins.push({
-
-x:
-50+
-Math.random()*320,
-
-y:
-50+
-Math.random()*500
-
-});
-
-}
-
-}
-function drawPlayer(){
-
-ctx.fillStyle =
-"#2563eb";
-
-ctx.fillRect(
-player.x-12,
-player.y-12,
-24,
-24
-);
-
-ctx.fillStyle =
-"#93c5fd";
-
-ctx.fillRect(
-player.x-6,
-player.y-20,
-12,
-8
-);
-
-}
-
-function drawEnemies(){
-
-for(
-let enemy
-of enemies
-){
-
-ctx.fillStyle =
-enemy.hp > 5
-?
-"#7f1d1d"
-:
-"#dc2626";
-
-ctx.fillRect(
-enemy.x-12,
-enemy.y-12,
-24,
-24
-);
-
-}
-
-}
-
-function drawCoins(){
-
-for(
-let coin
-of coins
-){
-
-ctx.fillStyle =
-"#facc15";
-
-ctx.beginPath();
-
-ctx.arc(
-coin.x,
-coin.y,
-8,
-0,
-Math.PI*2
-);
-
-ctx.fill();
-
-}
-
-}
-
-function drawBullets(){
-
-ctx.fillStyle =
-"#ffffff";
-
-for(
-let bullet
-of bullets
-){
-
-ctx.beginPath();
-
-ctx.arc(
-bullet.x,
-bullet.y,
-4,
-0,
-Math.PI*2
-);
-
-ctx.fill();
-
-}
-
-}
-
-function drawQuestHUD(){
-
-ctx.fillStyle =
-"rgba(0,0,0,.4)";
-
-ctx.fillRect(
-10,
-10,
-180,
-55
-);
-
-ctx.fillStyle =
-"#ef4444";
-
-ctx.fillRect(
-20,
-20,
-player.hp,
-14
-);
-
-ctx.fillStyle =
-"white";
-
-ctx.font =
-"16px Arial";
-
-ctx.fillText(
-"HP",
-25,
-48
-);
-
-ctx.fillText(
-"Level: " +
-level,
-100,
-30
-);
-
-ctx.fillText(
-"Coins: " +
-player.coins,
-100,
-50
-);
-
-}
-
-function moveEnemies(){
-
-for(
-let enemy
-of enemies
-){
-
-const dx =
-player.x-enemy.x;
-
-const dy =
-player.y-enemy.y;
-
-const dist =
-Math.hypot(
-dx,
-dy
-);
-
-if(
-dist > 1
-){
-
-enemy.x +=
-(dx/dist)*1.2;
-
-enemy.y +=
-(dy/dist)*1.2;
-
-}
-
-if(
-dist < 18
-){
-
-player.hp -=
-0.15;
-
-}
-
-}
-
-}
-
-function moveBullets(){
-
-for(
-let i=
-bullets.length-1;
-i>=0;
-i--
-){
-
-let bullet =
-bullets[i];
-
-bullet.x +=
-bullet.vx;
-
-bullet.y +=
-bullet.vy;
-
-for(
-let e=
-enemies.length-1;
-e>=0;
-e--
-){
-
-const enemy =
-enemies[e];
-
-if(
-
-Math.abs(
-bullet.x-enemy.x
-) < 14 &&
-
-Math.abs(
-bullet.y-enemy.y
-) < 14
-
-){
-
-enemy.hp--;
-
-bullets.splice(
-i,
-1
-);
-
-if(
-enemy.hp<=0
-){
-
-enemies.splice(
-e,
-1
-);
-
-score += 5;
-
-updateHUD();
-
-scoreSound();
-
-}
-
-break;
-
-}
-
-}
-
-}
-
-}
-
-function collectCoins(){
-
-for(
-let i=
-coins.length-1;
-i>=0;
-i--
-){
-
-const coin =
-coins[i];
-
-if(
-
-Math.abs(
-coin.x-player.x
-) < 16 &&
-
-Math.abs(
-coin.y-player.y
-) < 16
-
-){
-
-coins.splice(
-i,
-1
-);
-
-player.coins++;
-
-score++;
-
-scoreSound();
-
-updateHUD();
-
-}
-
-}
-
-}
-
-function spawnBullet(){
-
-let vx = 0;
-let vy = 0;
-
-if(
-player.dir==="up"
-){
-vy=-7;
-}
-
-if(
-player.dir==="down"
-){
-vy=7;
-}
-
-if(
-player.dir==="left"
-){
-vx=-7;
-}
-
-if(
-player.dir==="right"
-){
-vx=7;
-}
-
-bullets.push({
-
-x:player.x,
-y:player.y,
-
-vx:vx,
-vy:vy
-
-});
-
-}
-
-document.addEventListener(
-"keydown",
+}canvas.addEventListener(
+"touchstart",
 e=>{
 
-if(
-game!=="quest" ||
-!running
-){
-return;
-}
-
-if(
-e.key==="w"
-){
-
-player.y-=8;
-player.dir="up";
-
-}
-
-if(
-e.key==="s"
-){
-
-player.y+=8;
-player.dir="down";
-
-}
-
-if(
-e.key==="a"
-){
-
-player.x-=8;
-player.dir="left";
-
-}
-
-if(
-e.key==="d"
-){
-
-player.x+=8;
-player.dir="right";
-
-}
-
-if(
-e.code==="Space"
-){
-
-spawnBullet();
-
-}
-
-});
-
-function checkQuestProgress(){
-
-if(
-coins.length===0 &&
-enemies.length===0
-){
-
-level++;
-
-score += 25;
-
-updateHUD();
-
-spawnQuestLevel();
-
-}
-
-if(
-player.hp<=0
-){
-
-finish(
-"Level Reached: "
-+
-level
-);
-
-}
-
-}
-let boss = null;
-
-function spawnBoss(){
-
-boss = {
-
-x:210,
-y:120,
-
-hp:50 + level*10,
-
-maxHp:50 + level*10,
-
-cooldown:0
-
-};
-
-}
-
-function updateBoss(){
-
-if(!boss) return;
-
-const dx =
-player.x - boss.x;
-
-const dy =
-player.y - boss.y;
-
-const dist =
-Math.hypot(dx,dy);
-
-if(dist > 120){
-
-boss.x +=
-(dx/dist)*0.8;
-
-boss.y +=
-(dy/dist)*0.8;
-
-}
-
-boss.cooldown++;
-
-if(boss.cooldown > 60){
-
-boss.cooldown = 0;
-
-bullets.push({
-
-x:boss.x,
-y:boss.y,
-
-vx:(player.x-boss.x)/40,
-vy:(player.y-boss.y)/40,
-
-enemy:true
-
-});
-
-}
-
-}
-
-function drawBoss(){
-
-if(!boss) return;
-
-ctx.fillStyle =
-"#7c3aed";
-
-ctx.fillRect(
-boss.x-22,
-boss.y-22,
-44,
-44
-);
-
-ctx.fillStyle =
-"#ffffff";
-
-ctx.fillRect(
-120,
-20,
-180,
-14
-);
-
-ctx.fillStyle =
-"#ef4444";
-
-ctx.fillRect(
-120,
-20,
-180 *
-(boss.hp/boss.maxHp),
-14
-);
-
-ctx.fillStyle =
-"white";
-
-ctx.fillText(
-"Boss",
-190,
-16
-);
-
-}
-
-function checkBossHits(){
-
-if(!boss) return;
-
-for(
-let i=bullets.length-1;
-i>=0;
-i--
-){
-
-const b =
-bullets[i];
-
-if(b.enemy)
-continue;
-
-if(
-
-Math.abs(
-b.x-boss.x
-) < 24 &&
-
-Math.abs(
-b.y-boss.y
-) < 24
-
-){
-
-boss.hp--;
-
-bullets.splice(i,1);
-
-score++;
-
-updateHUD();
-
-if(
-boss.hp <= 0
-){
-
-boss = null;
-
-score += 100;
-
-updateHUD();
-
-scoreSound();
-
-}
-
-}
-
-}
-
-}
-
-function checkEnemyBullets(){
-
-for(
-let i=bullets.length-1;
-i>=0;
-i--
-){
-
-const b =
-bullets[i];
-
-if(!b.enemy)
-continue;
-
-if(
-
-Math.abs(
-b.x-player.x
-) < 16 &&
-
-Math.abs(
-b.y-player.y
-) < 16
-
-){
-
-player.hp -= 10;
-
-bullets.splice(i,1);
-
-}
-
-}
-
-}
-
-function questLoop(){
-
-if(
-!running ||
-game!=="quest"
-){
-return;
-}
-
-ctx.fillStyle =
-"#14532d";
-
-ctx.fillRect(
-0,
-0,
-420,
-700
-);
-
-drawCoins();
-
-drawEnemies();
-
-drawBullets();
-
-drawPlayer();
-
-drawQuestHUD();
-
-if(
-level % 5 === 0 &&
-!boss
-){
-
-spawnBoss();
-
-}
-
-updateBoss();
-
-drawBoss();
-
-moveEnemies();
-
-moveBullets();
-
-collectCoins();
-
-checkBossHits();
-
-checkEnemyBullets();
-
-checkQuestProgress();
-
-animationId =
-requestAnimationFrame(
-questLoop
-);
-
-}
-
-
-
-
-
-
-
-/* ==========================
-   MOBILE QUEST CONTROLS
-========================== */
-
-let touchMoveX = 0;
-let touchMoveY = 0;
-
-canvas.addEventListener(
-"touchmove",
-e=>{
-
-if(
-game!=="quest" ||
-!running
-){
-return;
-}
+const touch =
+e.touches[0];
 
 const rect =
 canvas.getBoundingClientRect();
 
-touchMoveX =
-e.touches[0].clientX
-- rect.left;
+const fakeEvent = {
 
-touchMoveY =
-e.touches[0].clientY
-- rect.top;
+offsetX:
+touch.clientX -
+rect.left,
+
+offsetY:
+touch.clientY -
+rect.top
+
+};
 
 if(
-touchMoveX < player.x
+game==="blockblast"
 ){
-player.x -= 4;
-player.dir="left";
+blockBlastClick(
+fakeEvent
+);
 }
 
 if(
-touchMoveX > player.x
-){
-player.x += 4;
-player.dir="right";
-}
-
-if(
-touchMoveY < player.y
-){
-player.y -= 4;
-player.dir="up";
-}
-
-if(
-touchMoveY > player.y
-){
-player.y += 4;
-player.dir="down";
-}
-
-});
-
-canvas.addEventListener(
-"dblclick",
-()=>{
-
-if(
-game==="quest" &&
+game==="flappy" &&
 running
 ){
 
-spawnBullet();
-
-}
-
-});
-/* ==========================
-   AUDIO SYSTEM
-========================== */
-
-let audioCtx = null;
-
-function initAudio(){
-
-if(audioCtx) return;
-
-audioCtx =
-new (
-window.AudioContext ||
-window.webkitAudioContext
-)();
-
-}
-
-function beep(
-frequency,
-duration,
-volume
-){
-
-if(!audioCtx) return;
-
-const osc =
-audioCtx.createOscillator();
-
-const gain =
-audioCtx.createGain();
-
-osc.frequency.value =
-frequency;
-
-gain.gain.value =
-volume;
-
-osc.connect(gain);
-
-gain.connect(
-audioCtx.destination
-);
-
-osc.start();
-
-setTimeout(
-()=>{
-osc.stop();
-},
-duration
-);
-
-}
-
-function clickSound(){
-
-beep(
-700,
-60,
-0.03
-);
-
-}
-
-function scoreSound(){
-
-beep(
-900,
-80,
-0.04
-);
-
-setTimeout(
-()=>{
-beep(
-1200,
-60,
-0.03
-);
-},
-50
-);
-
-}
-
-function gameOverSound(){
-
-beep(
-300,
-120,
-0.05
-);
-
-setTimeout(
-()=>{
-beep(
-220,
-180,
-0.05
-);
-},
-120
-);
-
-}
-
-document.addEventListener(
-"click",
-initAudio,
-{once:true}
-);
-
-
-
-
-
-
-
-/* ==========================
-   BUTTON SOUND EFFECTS
-========================== */
-
-document.addEventListener(
-"click",
-e=>{
-
-if(
-e.target.tagName ===
-"BUTTON"
-){
-
-clickSound();
-
-}
-
-});
-
-
-
-
-
-
-
-/* ==========================
-   SIMPLE BACKGROUND MUSIC
-========================== */
-
-let musicInterval =
-null;
-
-function startMusic(){
-
-stopMusic();
-
-if(!audioCtx) return;
-
-const notes = [
-
-440,
-523,
-659,
-587,
-523,
-784
-
-];
-
-let i = 0;
-
-musicInterval =
-setInterval(
-()=>{
-
-if(
-!running
-){
-return;
-}
-
-beep(
-notes[
-i %
-notes.length
-],
-120,
-0.015
-);
-
-i++;
-
-},
-900
-);
-
-}
-
-function stopMusic(){
-
-if(
-musicInterval
-){
-
-clearInterval(
-musicInterval
-);
-
-musicInterval =
-null;
-
-}
-
-}
-
-
-
-
-
-
-
-/* ==========================
-   RESPONSIVE MOBILE FIXES
-========================== */
-
-function resizeCanvas(){
-
-const maxWidth =
-window.innerWidth - 20;
-
-const maxHeight =
-window.innerHeight - 120;
-
-const scale =
-Math.min(
-maxWidth / 420,
-maxHeight / 700,
-1
-);
-
-canvas.style.width =
-(420 * scale) + "px";
-
-canvas.style.height =
-(700 * scale) + "px";
-
-}
-
-window.addEventListener(
-"resize",
-resizeCanvas
-);
-
-resizeCanvas();
-
-
-
-
-
-
-
-/* ==========================
-   BETTER MOBILE SCROLL FIX
-========================== */
-
-document.body.addEventListener(
-"touchmove",
-e=>{
-
-if(
-play.style.display ===
-"flex"
-){
-
-e.preventDefault();
-
-}
-
-},
-{
-passive:false
-}
-);
-
-
-
-
-
-
-
-/* ==========================
-   GAME START WRAPPERS
-========================== */
-
-const oldOpenGame =
-openGame;
-
-openGame = function(g){
-
-oldOpenGame(g);
-
-initAudio();
-
-startMusic();
-
-};
-
-const oldFinish =
-finish;
-
-finish = function(text){
-
-gameOverSound();
-
-stopMusic();
-
-oldFinish(text);
-
-};
-
-/* ==========================
-   EXTRA GAME REGISTRATION
-========================== */
-
-function registerExtraGames(){
-
-const cards =
-document.querySelector(
-".cards"
-);
-
-if(!cards) return;
-
-if(
-!document.getElementById(
-"questCard"
-)
-){
-
-const quest =
-document.createElement(
-"div"
-);
-
-quest.className =
-"card";
-
-quest.id =
-"questCard";
-
-quest.innerHTML =
-`
-<h2>⚔️ Pixel Quest</h2>
-<button onclick="openGame('quest')">
-PLAY
-</button>
-`;
-
-cards.appendChild(
-quest
-);
+bird.v = -8;
 
 }
 
 if(
-!document.getElementById(
-"blastCard"
-)
+game==="circle" &&
+running
 ){
 
-const blast =
-document.createElement(
-"div"
-);
+drawing = true;
 
-blast.className =
-"card";
-
-blast.id =
-"blastCard";
-
-blast.innerHTML =
-`
-<h2>🧩 Block Blast</h2>
-<button onclick="openGame('blockblast')">
-PLAY
-</button>
-`;
-
-cards.appendChild(
-blast
-);
-
-}
-
-}
-
-registerExtraGames();
-
-
-
-
-
-
-
-/* ==========================
-   START GAME ROUTER
-========================== */
-
-const originalStartGame =
-startGame;
-
-startGame = function(){
-
-score = 0;
-
-updateHUD();
+points = [];
 
 ctx.clearRect(
 0,
@@ -5070,238 +2526,218 @@ ctx.clearRect(
 700
 );
 
-if(
-animationId
-){
+ctx.beginPath();
 
-cancelAnimationFrame(
-animationId
+ctx.moveTo(
+fakeEvent.offsetX,
+fakeEvent.offsetY
 );
 
-}
-
-if(
-game === "flappy"
-){
-
-startFlappy();
-
-return;
+points.push([
+fakeEvent.offsetX,
+fakeEvent.offsetY
+]);
 
 }
-
-if(
-game === "snake"
-){
-
-startSnake();
-
-return;
-
-}
-
-if(
-game === "circle"
-){
-
-startCircle();
-
-return;
-
-}
-
-if(
-game === "tetris"
-){
-
-startTetris();
-
-return;
-
-}
-
-if(
-game === "blockblast"
-){
-
-startBlockBlast();
-
-return;
-
-}
-
-if(
-game === "quest"
-){
-
-startQuest();
-
-return;
-
-}
-
-if(
-typeof originalStartGame
-===
-"function"
-){
-
-originalStartGame();
-
-}
-
-};
-
-
-
-
-
-
-
-/* ==========================
-   UPDATE HUD
-========================== */
-
-function updateHUD(){
-
-scoreEl.textContent =
-score;
-
-bestEl.textContent =
-best;
-
-}
-
-
-
-
-
-
-
-/* ==========================
-   FINAL MOBILE FIXES
-========================== */
-
-canvas.addEventListener(
-"contextmenu",
-e=>{
 
 e.preventDefault();
 
+},
+{
+passive:false
 }
 );
 
-canvas.style.touchAction =
-"none";
+canvas.addEventListener(
+"touchmove",
+e=>{
 
-document.body.style.overscrollBehavior =
-"none";
+if(
+game!=="circle" ||
+!drawing
+){
+return;
+}
 
+const touch =
+e.touches[0];
 
+const rect =
+canvas.getBoundingClientRect();
 
+const x =
+touch.clientX -
+rect.left;
 
+const y =
+touch.clientY -
+rect.top;
 
+ctx.lineWidth = 5;
 
+ctx.lineCap =
+"round";
 
-/* ==========================
-   SAFETY RESET
-========================== */
+ctx.strokeStyle =
+"#0a84ff";
 
-function resetGameState(){
+ctx.lineTo(
+x,
+y
+);
 
-running =
-false;
+ctx.stroke();
 
-selectedPiece =
-null;
+points.push([
+x,
+y
+]);
 
-drawing =
-false;
+e.preventDefault();
 
-snakeStarted =
-false;
+},
+{
+passive:false
+}
+);
 
-bullets =
-[];
+canvas.addEventListener(
+"touchend",
+()=>{
 
-enemies =
-[];
+if(
+game!=="circle" ||
+!drawing
+){
+return;
+}
 
-coins =
-[];
+drawing = false;
 
-boss =
-null;
+if(
+points.length < 30
+){
+
+finish(
+"Draw a bigger circle!"
+);
+
+return;
 
 }
 
-const oldExitGame =
-exitGame;
+let cx =
+points.reduce(
+(a,p)=>a+p[0],
+0
+)
+/points.length;
 
-exitGame = function(){
+let cy =
+points.reduce(
+(a,p)=>a+p[1],
+0
+)
+/points.length;
 
-resetGameState();
-
-stopMusic();
-
-oldExitGame();
-
-};
-
-
-
-
-
-
-
-/* ==========================
-   VERSION INFO
-========================== */
-
-console.log(
-"Yousuf's Mini Games Ultimate V5 Loaded"
+let distances =
+points.map(
+p=>
+Math.hypot(
+p[0]-cx,
+p[1]-cy
+)
 );
 
-console.log(
-"Games: Flappy Bird, Snake, Perfect Circle, Tetris, Block Blast, Pixel Quest"
+let avg =
+distances.reduce(
+(a,b)=>a+b,
+0
+)
+/distances.length;
+
+let dev =
+distances.reduce(
+(a,b)=>
+a+
+Math.abs(
+b-avg
+),
+0
+)
+/distances.length;
+
+score =
+Math.max(
+1,
+Math.min(
+100,
+Math.round(
+100-dev*0.8
+)
+)
 );
 
-console.log(
-"Mobile Support Enabled"
+updateHUD();
+
+ctx.strokeStyle =
+"rgba(0,255,0,.35)";
+
+ctx.lineWidth = 3;
+
+ctx.beginPath();
+
+ctx.arc(
+cx,
+cy,
+avg,
+0,
+Math.PI*2
 );
 
-console.log(
-"Audio Enabled"
+ctx.stroke();
+
+finish(
+"Circle Accuracy: "
++
+score
++
+"%"
 );
 
-console.log(
-"Responsive UI Enabled"
-);
+});
 
+window.addEventListener(
+"resize",
+()=>{
 
+if(
+game==="blockblast"
+){
+drawBlockBlast();
+}
 
+});
 
+window.addEventListener(
+"keydown",
+e=>{
 
+if(
+e.key==="Escape"
+){
 
+exitGame();
 
-/* ==========================
-   INITIALIZE
-========================== */
+}
 
-resizeCanvas();
+});
 
-home.style.display =
-"flex";
+showGames = showGames;
 
-games.style.display =
-"none";
-
-play.style.display =
-"none";
-
-overlay.style.display =
-"none";
+updateHUD();
 
 </script>
+
 </body>
 </html>
